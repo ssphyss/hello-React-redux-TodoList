@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem';
 import TodoTest from './TodoTest';
+import store from './../../store';  // 使用 react-redux引入store
 import './index.css';
 
 class TodoList extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			inputValue: '',
-			list: []
-		}
+		// this.state = {
+		// 	inputValue: '',
+		// 	list: []
+		// }
+		this.state = store.getState();
+		
 		this.handleInputChange = this.handleInputChange.bind(this)
 		this.handleBtnClick = this.handleBtnClick.bind(this)
 		this.handleItemDelete = this.handleItemDelete.bind(this)
