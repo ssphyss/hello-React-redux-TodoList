@@ -1,0 +1,14 @@
+.todo-Box {
+    padding: 50px;
+    background-color: yellow;
+}
+
+input {
+    border: none;
+    padding: 12px;
+} 
+
+span {
+    font-size: 10px;
+    color: #9c9c9c
+}
