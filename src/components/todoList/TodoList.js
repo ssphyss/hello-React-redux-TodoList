@@ -3,14 +3,14 @@ import TodoItem from './TodoItem';
 import TodoTest from './TodoTest';
 // import store from './../../store';  // 使用 react-redux引入store
 import { connect } from 'react-redux';  // 使用 react-redux引入connect
+import { /*initListAction,*/ getInputChangeAction, getAddItemAction, getDeleteItemAction } from './../../store/actionCreator';
+// import { 
+//     // INIT_LIST_ACTION, 
+//     CHANGE_INPUT_VALUE, 
+//     ADD_TODO_ITEM, 
+//     DELETE_TODO_ITEM 
+// } from './../../store/actionTypes';
 import './index.css';
-import { 
-    // INIT_LIST_ACTION, 
-    CHANGE_INPUT_VALUE, 
-    ADD_TODO_ITEM, 
-    DELETE_TODO_ITEM 
-} from './../../store/actionTypes';
-
 
 class TodoList extends Component {
 	render() {
@@ -18,6 +18,7 @@ class TodoList extends Component {
 		const { inputValue, handleInputChange, handleBtnClick } = this.props;
 		return (
 			<div className='todo-Box'>
+				<h1>React-Redux  <span>TodoList</span></h1>
 				<label htmlFor='insertArea'>輸入內容</label>
 				<input 
 					id='insertArea'
@@ -102,27 +103,41 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		handleInputChange(e){
-			console.log('e.target.value：',e.target.value);
-			const action = {
-				type: CHANGE_INPUT_VALUE,
-				value: e.target.value
-			}
+			const action = getInputChangeAction(e.target.value);
 			dispatch(action);
 		},
+
 		handleBtnClick(){
-			console.log('handleBtnClick 按鈕：', '送出OK');
-			const action = {
-				type: ADD_TODO_ITEM
-			}
+			const action = getAddItemAction();
 			dispatch(action);
 		},
-		handleItemDelete (){
-			console.log('handleItemDelete 按鈕：', '刪除OK');
-			const action = {
-				type: DELETE_TODO_ITEM
-			}
+	
+		handleItemDelete(index){
+			const action = getDeleteItemAction(index);
 			dispatch(action);
 		}
+		// handleInputChange(e){
+		// 	console.log('e.target.value：',e.target.value);
+		// 	const action = {
+		// 		type: CHANGE_INPUT_VALUE,
+		// 		value: e.target.value
+		// 	}
+		// 	dispatch(action);
+		// },
+		// handleBtnClick(){
+		// 	console.log('handleBtnClick 按鈕：', '送出OK');
+		// 	const action = {
+		// 		type: ADD_TODO_ITEM
+		// 	}
+		// 	dispatch(action);
+		// },
+		// handleItemDelete (){
+		// 	console.log('handleItemDelete 按鈕：', '刪除OK');
+		// 	const action = {
+		// 		type: DELETE_TODO_ITEM
+		// 	}
+		// 	dispatch(action);
+		// }
 	}
 }
 
